@@ -1,0 +1,54 @@
+body {
+background-color: #3a1404;
+}
+#TEXTBOX {
+font-family: "Press Start 2P", system-ui;
+font-weight: 400;
+font-size: 24px;
+color: #fff9d6;
+margin: 32px 32px 280px 32px;
+}
+#SKILLBAR {
+background-color: #3a1404;
+position: fixed;
+margin: 0;
+padding: 16px;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 200px;
+border-top: 4px solid #fff9d6;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+}
+.itembox {
+width: 160px;
+margin: 0;
+padding: 0;
+border: 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center
+}
+img {
+width: 128px;
+height: 128px;
+margin: 32px;
+transition: 0.3s;
+transition-timing-function: cubic-bezier(0, 0, 0, 2.5);
+}
+img:hover {
+width: 140px;
+height: 140px;
+margin: 26px;
+}
+.label {
+font-family: "Press Start 2P", system-ui;
+font-weight: 400;
+font-size: 16px;
+color: #fff9d6;
+margin-bottom: 20px;
+}

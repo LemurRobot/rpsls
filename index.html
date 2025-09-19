@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Rock Paper Scissors Lizard Spock</title>
+    </head>
+    <body>
+        <div id="TEXTBOX"></div>
+        <div id="SKILLBAR">
+            <div class="itembox">
+                <img src="rock.png" alt="Rock" onclick="setChoice('ROCK');">
+                <div class="label">ROCK</div>
+            </div>
+            <div class="itembox">
+                <img src="paper.png" alt="Paper" onclick="setChoice('PAPER');">
+                <div class="label">PAPER</div>
+            </div>
+            <div class="itembox">
+                <img src="scissors.png" alt="Scissors" onclick="setChoice('SCISSORS');">
+                <div class="label">SCISSORS</div>
+            </div>
+            <div class="itembox">
+                <img src="lizard.png" alt="Lizard" onclick="setChoice('LIZARD');">
+                <div class="label">LIZARD</div>
+            </div>
+            <div class="itembox">
+                <img src="spock.png" alt="Spock" onclick="setChoice('SPOCK');">
+                <div class="label">SPOCK</div>
+            </div>
+        </div>
+        <script>
+function appendToHTML(text) {
+    document.getElementById("TEXTBOX").innerHTML += text + "<br/>";
+}
+
+function playRound(choicePlayer, choiceComputer) {
+    appendToHTML("");
+    appendToHTML("3...");
+    appendToHTML("2...");
+    appendToHTML("1...");
+    appendToHTML("Shoot!");
+    appendToHTML("");
+    appendToHTML(`You play ${choicePlayer}!`);
+    appendToHTML(`Your opponent plays ${choiceComputer}!`);
+    var messages_player_won = ["Your ROCK crushes the enemy SCISSORS!", "Your ROCK squishes the enemy LIZARD!", "Your PAPER covers the enemy ROCK!", "Your PAPER disproves the enemy SPOCK!", "Your SCISSORS cuts the enemy PAPER!", "Your SCISSORS decapitates the enemy LIZARD!", "Your LIZARD eats the enemy PAPER!", "Your LIZARD poisons the enemy SPOCK!", "Your SPOCK vaporises the enemy ROCK!", "Your SPOCK smashes the enemy SCISSORS!"];
+    var messages_computer_won = ["Your SCISSORS is crushed by the enemy ROCK!", "Your LIZARD is squished by the enemy ROCK!", "Your ROCK is covered by the enemy PAPER!", "Your SPOCK is disproved by the enemy PAPER!", "Your PAPER is cut by the enemy SCISSORS!", "Your LIZARD is decapitated the enemy SCISSORS!", "Your PAPER is eaten by the enemy LIZARD!", "Your SPOCK is poisoned by the enemy LIZARD!", "Your ROCK is vaporised by the enemy SPOCK!", "Your SCISSORS is smashed by the enemy SPOCK!"];
+    var winner_types = ["ROCK", "PAPER", "SCISSORS", "LIZARD", "SPOCK"];
+    var wins_against = ["SCISSORS", "LIZARD", "ROCK", "SPOCK", "PAPER", "LIZARD", "PAPER", "SPOCK", "ROCK", "SCISSORS"];
+    var winner = 2;
+    if (choicePlayer != choiceComputer) {
+        for (var i = 0; i < winner_types.length; i++) {
+            if (choicePlayer === winner_types[i] && (choiceComputer === wins_against[i * 2] || choiceComputer === wins_against[i * 2 + 1])) {
+                if (choiceComputer === wins_against[i * 2]) {
+                    appendToHTML(messages_player_won[i * 2]);
+                    appendToHTML("You won this round!");
+                } else {
+                    appendToHTML(messages_player_won[i * 2 + 1]);
+                    appendToHTML("You won this round!");
+                }
+                winner = 1;
+                break;
+            } else if (choiceComputer === winner_types[i] && (choicePlayer === wins_against[i * 2] || choicePlayer === wins_against[i * 2 + 1])) {
+                if (choicePlayer === wins_against[i * 2]) {
+                    appendToHTML(messages_computer_won[i * 2]);
+                    appendToHTML("Your opponent won this round.");
+                } else {
+                    appendToHTML(messages_computer_won[i * 2 + 1]);
+                    appendToHTML("Your opponent won this round.");
+                }
+                break;
+            }
+        }
+    } else {
+        appendToHTML(`Your ${choicePlayer} is at a draw with the enemy ${choiceComputer}.`);
+        winner = 0;
+    }
+    return winner;
+}
+
+function setChoice(choicePlayer) {
+    let types = ["ROCK", "PAPER", "SCISSORS", "LIZARD", "SPOCK"];
+    let choiceComputer = types[Math.floor(Math.random() * 5)];
+    playRound(choicePlayer, choiceComputer);
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+}
+
+appendToHTML("Choose from: ROCK PAPER SCISSORS LIZARD SPOCK");
+
+        </script>
+    </body>
+</html>
